@@ -1,13 +1,24 @@
-
-import './App.css';
+import "./App.css";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import './footer/footerCSS/footer.css';
 
 function App() {
   return (
-    <div className="App">
-      <header>
-      <h1>wookOne</h1>
-      </header>
-    </div>
+    <Container>
+      <Row>
+        <Col>
+          <header>
+            <h1>wookOne</h1>
+          </header>
+          <main>
+          wookOne
+          </main>
+          
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
