@@ -7,7 +7,7 @@ class Header extends Component {
     return (
 
       
-      <Navbar className="bg-navbar " sticky="top" expand="lg">
+      <Navbar className="bg-navbar"  expand="lg">
         {/* <Navbar.Brand href="/"> 
            <img src={DreadLogo} alt="Wook Logo" height="60px" />
          </Navbar.Brand> */}

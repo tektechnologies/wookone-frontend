@@ -62,6 +62,11 @@ nav .navbar-nav  a {
 }
 
 
+.margin-zero {
+  margin: 0;
+  padding: 0;
+}
+
 
 @media only screen and (max-width: 990px) {
   /* styles for mobile browsers smaller than 480px; (iPhone) */
