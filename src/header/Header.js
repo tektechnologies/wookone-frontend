@@ -7,7 +7,7 @@ class Header extends Component {
     return (
 
       
-      <Navbar className="bg-navbar"  expand="lg">
+      <Navbar className="bg-navbar" fixed="top" expand="lg">
         {/* <Navbar.Brand href="/"> 
            <img src={DreadLogo} alt="Wook Logo" height="60px" />
          </Navbar.Brand> */}
@@ -24,7 +24,7 @@ class Header extends Component {
             </Nav.Link>
           </Nav>
        
-          <ul className="nav navbar-nav justify-content-end">
+          <ul className="nav navbar-nav">
             <li>
               <Nav.Link href="/Dashbored"> dashBored</Nav.Link>
             </li>
