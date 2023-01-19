@@ -9,7 +9,7 @@ import Header from "./header/Header.js";
 
 function App() {
   return (
-    <Container>
+    <Container fluid>
       <Row>
         <Col>
           <Header />

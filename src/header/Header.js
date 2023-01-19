@@ -5,7 +5,9 @@ import "./headerCSS/header.css";
 class Header extends Component {
   render() {
     return (
-      <Navbar className="bg-navbar" expand="lg">
+
+      
+      <Navbar className="bg-navbar " sticky="top" expand="lg">
         {/* <Navbar.Brand href="/"> 
            <img src={DreadLogo} alt="Wook Logo" height="60px" />
          </Navbar.Brand> */}
@@ -21,20 +23,23 @@ class Header extends Component {
               wooking
             </Nav.Link>
           </Nav>
-
-          <ul className="nav navbar-nav navbar-right">
+       
+          <ul className="nav navbar-nav justify-content-end">
             <li>
               <Nav.Link href="/Dashbored"> dashBored</Nav.Link>
             </li>
             <li>
               <Nav.Link href="/Register"> Register</Nav.Link>
             </li>
-            <li>
-              <Nav.Link href="/Login">Login</Nav.Link>
+            <li >
+              <Nav.Link  href="/Login">Login</Nav.Link>
             </li>
           </ul>
         </Navbar.Collapse>
       </Navbar>
+
+
+ 
     );
   }
 }
