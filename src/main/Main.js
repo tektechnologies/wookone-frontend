@@ -9,6 +9,9 @@ class Main extends Component {
       error: false,
       citySearched: "",
       cityData: {},
+      mapData: "",
+      lat: this.state.cityData.lat,
+      lon: this.state.cityData.lon,
     };
   }
 
@@ -24,14 +27,14 @@ class Main extends Component {
       let searchCityURL = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATION_KEY}&q=${this.state.citySearched}&format=json`;
       let cityData = await axios.get(searchCityURL);
       this.setState({
-        error:false,
+        error: false,
         cityData: cityData.data[0],
       });
     } catch (error) {
       this.setState({
         error: true,
         errorMessage: `A Location error occurred: ${error.response.status}`,
-      }); 
+      });
     }
   };
 
@@ -47,16 +50,18 @@ class Main extends Component {
           </label>
           <button>Search</button>
         </form>
-      {
-        this.state.error ?
-         <p>{this.state.errorMessage}</p> :
-         <ul>
-          <li>City Name: {this.state.cityData.display_name}</li>
-          <li>Latitude: {this.state.cityData.lat}</li>
-          <li>Longitude: {this.state.cityData.lon}</li>
-         </ul>
-      }
-       
+        {this.state.error ? (
+          <p>{this.state.errorMessage}</p>
+        ) : (
+          <>
+            <ul>
+              <li>City Name: {this.state.cityData.display_name} </li>
+              <li>Latitude: {this.state.cityData.lat} </li>
+              <li>Longitude: {this.state.cityData.lon} </li>
+            </ul>
+            <image src={this.state.mapData} fluid />
+          </>
+        )}
       </main>
     );
   }
