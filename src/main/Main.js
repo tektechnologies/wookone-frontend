@@ -27,6 +27,12 @@ class Main extends Component {
   };
 
   render() {
+    console.log('asdfasdf',this.state.cityData);
+
+    // let cityDataRender = this.state.cityData.map((city, index) => {
+    //   return <li key={index}>{city.display_name}</li>;
+    // });
+
     return (
       <main>
         <form onSubmit={this.searchCityAPI}>
@@ -36,6 +42,9 @@ class Main extends Component {
           </label>
           <button>Search</button>
         </form>
+
+
+        {/* <ul>{cityDataRender}</ul> */}
       </main>
     );
   }
