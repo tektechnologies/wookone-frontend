@@ -10,6 +10,8 @@ class Main extends Component {
       citySearched: "",
       cityData: {},
       mapData: "",
+      lat: '',
+      lon: '',
    
     };
   }
@@ -28,6 +30,10 @@ class Main extends Component {
       this.setState({
         error: false,
         cityData: cityData.data[0],
+        lat: cityData.data[0].lat,
+        lon: cityData.data[0].lon
+      },() => {
+        this.getMapData();
       });
     } catch (error) {
       this.setState({
@@ -37,8 +43,12 @@ class Main extends Component {
     }
   };
 
+  getMapData = async () => {
+   console.log('state lat', this.state.lat,'state lon', this.state.lon);
+  };
+
   render() {
-    console.log("!!", this.state.cityData);
+    // console.log("!!", this.state.cityData);
 
     return (
       <main>
@@ -58,7 +68,7 @@ class Main extends Component {
               <li>Latitude: {this.state.cityData.lat} </li>
               <li>Longitude: {this.state.cityData.lon} </li>
             </ul>
-            <image src={this.state.mapData} fluid />
+            {/* <image src={this.state.mapData} fluid /> */}
           </>
         )}
       </main>
