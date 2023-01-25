@@ -38,10 +38,6 @@ class Main extends Component {
   render() {
     console.log("asdfasdf", this.state.cityData);
 
-    // let cityDataRender = this.state.cityData.map((city, index) => {
-    //   return <li key={index}>{city.display_name}</li>;
-    // });
-
     return (
       <main>
         <form onSubmit={this.searchCityAPI}>
@@ -51,8 +47,16 @@ class Main extends Component {
           </label>
           <button>Search</button>
         </form>
-
-        {/* <ul>{cityDataRender}</ul> */}
+      {
+        this.state.error ?
+         <p>{this.state.errorMessage}</p> :
+         <ul>
+          <li>City Name: {this.state.cityData.display_name}</li>
+          <li>Latitude: {this.state.cityData.lat}</li>
+          <li>Longitude: {this.state.cityData.lon}</li>
+         </ul>
+      }
+       
       </main>
     );
   }
