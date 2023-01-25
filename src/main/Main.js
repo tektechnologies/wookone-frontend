@@ -10,8 +10,7 @@ class Main extends Component {
       citySearched: "",
       cityData: {},
       mapData: "",
-      lat: this.state.cityData.lat,
-      lon: this.state.cityData.lon,
+   
     };
   }
 
@@ -39,7 +38,7 @@ class Main extends Component {
   };
 
   render() {
-    console.log("asdfasdf", this.state.cityData);
+    console.log("!!", this.state.cityData);
 
     return (
       <main>
