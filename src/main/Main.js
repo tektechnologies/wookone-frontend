@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './mainCSS/main.css';
-
+import axios from 'axios';
 
  class Main extends Component {
   constructor(props){
@@ -21,8 +21,8 @@ import './mainCSS/main.css';
       
       let searchCityURL = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATION_KEY}&q=${this.state.citySearched}&format=json`;
       
-      console.log("🚀 ~ file: Main.js:24 ~ Main ~ searchCityAPI= ~ searchCityURL", searchCityURL);
-      // let cityData = await axios.get(searchCityURL);
+      let cityData = await axios.get(searchCityURL);
+      console.log("🚀 ~ file: Main.js:25 ~ Main ~ searchCityAPI= ~ cityDat", cityData);
 
       // this.setState({
 
