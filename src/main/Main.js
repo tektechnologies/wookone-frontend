@@ -10,9 +10,8 @@ class Main extends Component {
       citySearched: "",
       cityData: {},
       mapData: "",
-      lat: '',
-      lon: '',
-   
+      lat: "",
+      lon: "",
     };
   }
 
@@ -27,14 +26,17 @@ class Main extends Component {
       event.preventDefault();
       let searchCityURL = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATION_KEY}&q=${this.state.citySearched}&format=json`;
       let cityData = await axios.get(searchCityURL);
-      this.setState({
-        error: false,
-        cityData: cityData.data[0],
-        lat: cityData.data[0].lat,
-        lon: cityData.data[0].lon
-      },() => {
-        this.getMapData();
-      });
+      this.setState(
+        {
+          error: false,
+          cityData: cityData.data[0],
+          lat: cityData.data[0].lat,
+          lon: cityData.data[0].lon,
+        },
+        () => {
+          this.getMapData();
+        }
+      );
     } catch (error) {
       this.setState({
         error: true,
@@ -44,12 +46,9 @@ class Main extends Component {
   };
 
   getMapData = async () => {
-   console.log('state lat', this.state.lat,'state lon', this.state.lon);
   };
 
   render() {
-    // console.log("!!", this.state.cityData);
-
     return (
       <main>
         <form onSubmit={this.searchCityAPI}>
