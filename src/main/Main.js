@@ -11,10 +11,10 @@ import './mainCSS/main.css';
   }
 
    handleInput = (event) => {
-    event.preventDefault();
-      this.setState = {
+    // event.preventDefault();
+      this.setState({
         citySearched: event.target.value,
-      }
+      });
     }
   render() {
     console.log('city input in state', this.state.citySearched);
