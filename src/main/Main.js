@@ -7,6 +7,7 @@ import axios from 'axios';
     super(props);
     this.state = {
       citySearched: "",
+      cityData: {},
     };
   }
 
@@ -22,18 +23,18 @@ import axios from 'axios';
       let searchCityURL = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATION_KEY}&q=${this.state.citySearched}&format=json`;
       
       let cityData = await axios.get(searchCityURL);
-      console.log("🚀 ~ file: Main.js:25 ~ Main ~ searchCityAPI= ~ cityDat", cityData.data[0].display_name);
+  
 
-      // this.setState({
-
-      // });
+      this.setState({
+        cityData: cityData.data[0],
+      });
     }
 
 
 
 
   render() {
-    console.log('city input in state', this.state.citySearched);
+    console.log('city input in state', this.state.cityData);
     return (
       <main>
       <form onSubmit={this.searchCityAPI}>
