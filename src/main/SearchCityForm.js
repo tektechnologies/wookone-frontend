@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
 
 
 class SearchCityForm extends Component {
 
   searchCityValue = (event) => {
+
     event.preventDefault();
+   
     this.props.searchCityAPI();
   };
 
@@ -17,7 +20,7 @@ class SearchCityForm extends Component {
           Search For City:
           <input 
           type="text" 
-          onInput={this.props.handleInput}
+          onChange={this.props.handleCityInput}
           placeholder="Enter a City"
            />
         </label>
@@ -29,7 +32,7 @@ class SearchCityForm extends Component {
             </Alert>
           </>
         }
-        <button>Search</button>
+        <Button variant="success" type="submit">Search</Button>
       </form>
     );
   }
