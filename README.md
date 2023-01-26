@@ -1,11 +1,11 @@
 # wookOne
 
-Name of feature: ________________________________
+Name of feature: __wookieness__
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: __long time__
 
-Start time: _____
+Start time: __before now__
 
-Finish time: _____
+Finish time: __not yet__
 
-Actual time needed to complete: _____
+Actual time needed to complete: __you tell me__
