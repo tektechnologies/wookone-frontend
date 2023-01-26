@@ -3,12 +3,14 @@ import "./mainCSS/main.css";
 import axios from "axios";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import SearchCityForm from "./SearchCityForm.js";
 
 class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
       error: false,
+      errorMessage: "",
       citySearched: "",
       cityData: {},
       mapData: "",
@@ -65,34 +67,34 @@ class Main extends Component {
       <main>
         <Row>
           <Col>
-            <form onSubmit={this.searchCityAPI}>
-              <label>
-                Search For City:
-                <input type="text" onInput={this.handleInput} />
-              </label>
-              <button>Search</button>
-            </form>
-          </Col>
-          <Col>
-            {this.state.displayMap && this.state.error ? (
-              <p>{this.state.errorMessage}</p>
-            ) : (
-              <>
-                <ul>
-                  <li>City Name: {this.state.cityData.display_name}</li>
-                  <li>Latitude: {this.state.cityData.lat}</li>
-                  <li>Longitude: {this.state.cityData.lon}</li>
-                </ul>
-                <Row>
-                  <img
-                    src={this.state.mapData}
-                    alt={this.state.cityData.display_name}
-                  />
-                </Row>
-              </>
-            )}
+            <SearchCityForm 
+            searchCityAPI={this.searchCityAPI}
+            handleInput={this.handleInput}
+            error={this.state.error}
+            errorMessage={this.state.errorMessage}
+            />
           </Col>
         </Row>
+
+        <Col>
+          {this.state.displayMap && this.state.error ? (
+            <p>{this.state.errorMessage}</p>
+          ) : (
+            <>
+              <ul>
+                <li>City Name: {this.state.cityData.display_name}</li>
+                <li>Latitude: {this.state.cityData.lat}</li>
+                <li>Longitude: {this.state.cityData.lon}</li>
+              </ul>
+              <Row>
+                <img
+                  src={this.state.mapData}
+                  alt={this.state.cityData.display_name}
+                />
+              </Row>
+            </>
+          )}
+        </Col>
       </main>
     );
   }
