@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./mainCSS/main.css";
 import axios from "axios";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 class Main extends Component {
   constructor(props) {
@@ -12,6 +14,7 @@ class Main extends Component {
       mapData: "",
       lat: "",
       lon: "",
+      displayMap: false,
     };
   }
 
@@ -29,6 +32,7 @@ class Main extends Component {
       this.setState(
         {
           error: false,
+          displayMap: true,
           cityData: cityData.data[0],
           lat: cityData.data[0].lat,
           lon: cityData.data[0].lon,
@@ -39,6 +43,7 @@ class Main extends Component {
       );
     } catch (error) {
       this.setState({
+        displayMap: false,
         error: true,
         errorMessage: `A Location error occurred: ${error.response.status}`,
       });
@@ -58,28 +63,36 @@ class Main extends Component {
   render() {
     return (
       <main>
-        <form onSubmit={this.searchCityAPI}>
-          <label>
-            Search For City:
-            <input type="text" onInput={this.handleInput} />
-          </label>
-          <button>Search</button>
-        </form>
-        {this.state.error ? (
-          <p>{this.state.errorMessage}</p>
-        ) : (
-          <>
-            <ul>
-              <li>City Name: {this.state.cityData.display_name}</li>
-              <li>Latitude: {this.state.cityData.lat}</li>
-              <li>Longitude: {this.state.cityData.lon}</li>
-            </ul>
-            <img
-              src={this.state.mapData}
-              alt={this.state.cityData.display_name}
-            />
-          </>
-        )}
+        <Row>
+          <Col>
+            <form onSubmit={this.searchCityAPI}>
+              <label>
+                Search For City:
+                <input type="text" onInput={this.handleInput} />
+              </label>
+              <button>Search</button>
+            </form>
+          </Col>
+          <Col>
+            {this.state.displayMap && this.state.error ? (
+              <p>{this.state.errorMessage}</p>
+            ) : (
+              <>
+                <ul>
+                  <li>City Name: {this.state.cityData.display_name}</li>
+                  <li>Latitude: {this.state.cityData.lat}</li>
+                  <li>Longitude: {this.state.cityData.lon}</li>
+                </ul>
+                <Row>
+                  <img
+                    src={this.state.mapData}
+                    alt={this.state.cityData.display_name}
+                  />
+                </Row>
+              </>
+            )}
+          </Col>
+        </Row>
       </main>
     );
   }
