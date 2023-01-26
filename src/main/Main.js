@@ -46,17 +46,22 @@ class Main extends Component {
   };
 
   getMapData = async () => {
-    // <img src='https://maps.locationiq.com/v3/staticmap?key=<YOUR_ACCESS_TOKEN>&center=<latitude>,<longitude>&zoom=<zoom>&size=<width>x<height>&format=<format>&maptype=<MapType>&markers=icon:<icon>|<latitude>,<longitude>&markers=icon:<icon>|<latitude>,<longitude>'>
-    let mapURL = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_KEY}&center=${this.state.lat},${this.state.lat}&zoom=12`;
-    
-    // console.log("🚀 ~ file: Main.js:52 ~ Main ~ getMapData= ~ mapURL", mapURL);
+    let mapURL = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_KEY}&center=${this.state.lat},${this.state.lon}&size=${window.innerWidth}x300&format=jpg&zoom=12`;
+
     let mapDataResponse = await axios.get(mapURL);
-    
-    console.log("🚀 ~ file: Main.js:54 ~ Main ~ getMapData= ~ mapDataResponse", mapDataResponse.config.url);
-    
+
+    console.log(
+      "🚀 ~ file: Main.js:54 ~ Main ~ getMapData= ~ mapDataResponse",
+      mapDataResponse.config.url
+    );
+
+    this.setState({
+      mapData: mapDataResponse.config.url,
+    });
   };
 
   render() {
+    console.log(this.state.mapData);
     return (
       <main>
         <form onSubmit={this.searchCityAPI}>
@@ -75,7 +80,10 @@ class Main extends Component {
               <li>Latitude: {this.state.cityData.lat} </li>
               <li>Longitude: {this.state.cityData.lon} </li>
             </ul>
-            {/* <image src={this.state.mapData} fluid /> */}
+            <img
+              src={this.state.mapData}
+              alt={this.state.cityData.display_name}
+            />
           </>
         )}
       </main>
