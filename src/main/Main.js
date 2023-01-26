@@ -50,11 +50,6 @@ class Main extends Component {
 
     let mapDataResponse = await axios.get(mapURL);
 
-    console.log(
-      "🚀 ~ file: Main.js:54 ~ Main ~ getMapData= ~ mapDataResponse",
-      mapDataResponse.config.url
-    );
-
     this.setState({
       mapData: mapDataResponse.config.url,
     });
@@ -76,9 +71,9 @@ class Main extends Component {
         ) : (
           <>
             <ul>
-              <li>City Name: {this.state.cityData.display_name} </li>
-              <li>Latitude: {this.state.cityData.lat} </li>
-              <li>Longitude: {this.state.cityData.lon} </li>
+              <li>City Name: {this.state.cityData.display_name}</li>
+              <li>Latitude: {this.state.cityData.lat}</li>
+              <li>Longitude: {this.state.cityData.lon}</li>
             </ul>
             <img
               src={this.state.mapData}
