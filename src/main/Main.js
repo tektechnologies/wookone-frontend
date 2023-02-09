@@ -44,6 +44,7 @@ class Main extends Component {
           this.getMapData();
         }
       );
+      this.getWeatherData(cityData.data[0].lat,cityData.data[0].lon);
     } catch (error) {
       this.setState({
         displayMap: false,
@@ -51,12 +52,7 @@ class Main extends Component {
         errorMessage: error.response.status + ': ' + error.response.data.error 
       });
     }
-    
   };
-
-
-
-
   getMapData = async () => {
     let mapURL = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_KEY}&center=${this.state.lat},${this.state.lon}&size=${window.innerWidth}x300&format=jpg&zoom=12`;
     let mapDataResponse = await axios.get(mapURL);
@@ -65,7 +61,15 @@ class Main extends Component {
     });
   };
 
+  getWeatherData = async (lat, lon) => {
+    // console.log('lets get weather!!!!!!');
+    let serverURL = `${process.env.REACT_APP_SERVER_LOCAL}/weather?lat=${lat}&lon=${lon}`;
 
+    console.log("🚀 ~ file: Main.js:74 ~ Main ~ getWeatherData= ~ serverURL", serverURL);
+    let weatherResults = await axios.get(serverURL);
+    console.log("🚀 ~ file: Main.js:74 ~ Main ~ getWeatherData= ~ weatherResults", weatherResults);
+    
+  };
 
 
   render() {
