@@ -1,18 +1,31 @@
-import React from 'react'
+import React from "react";
+import { Card } from "react-bootstrap";
+import CardHeader from "react-bootstrap/esm/CardHeader";
+import "../mainCSS/main.css";
 
-
-
-
- class Weather extends React.Component {
-
-
+class Weather extends React.Component {
   render() {
-    console.log('weather data: ',this.props.weather);
+    console.log("weather data: ", this.props.weather);
     return (
-      <div>Weather</div>
-    )
+      <>
+        <h2>Weather:</h2>
+        {this.props.weather.map((weatherCast, index) => {
+          return (
+            <div className="float">
+
+            
+            <Card key={index} style={{width: '12rem'}}  bg={'success'}>
+              <CardHeader>{weatherCast.time}</CardHeader>
+              <Card.Body>
+                <Card.Title>{weatherCast.forecast}</Card.Title>
+              </Card.Body>
+            </Card>
+            </div>
+          );
+        })}
+      </>
+    );
   }
 }
-
 
 export default Weather;
