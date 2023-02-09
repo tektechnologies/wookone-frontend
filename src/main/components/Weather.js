@@ -11,10 +11,10 @@ class Weather extends React.Component {
         <h2>Weather:</h2>
         {this.props.weather.map((weatherCast, index) => {
           return (
-            <div className="float">
+            <div key={index} className="float">
 
             
-            <Card key={index} style={{width: '12rem'}}  bg={'success'}>
+            <Card  style={{width: '12rem'}}  bg={'success'}>
               <CardHeader>{weatherCast.time}</CardHeader>
               <Card.Body>
                 <Card.Title>{weatherCast.forecast}</Card.Title>

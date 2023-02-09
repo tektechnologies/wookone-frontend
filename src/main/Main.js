@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import "./mainCSS/main.css";
 import axios from "axios";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 import SearchCityForm from "./components/SearchCityForm.js";
 import Weather from './components/Weather.js'
 
@@ -55,6 +53,7 @@ class Main extends Component {
         errorMessage: error.response.status + ": " + error.response.data.error,
       });
     }
+    this.getMoviesData();
   };
   getMapData = async () => {
     let mapURL = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_KEY}&center=${this.state.lat},${this.state.lon}&size=${window.innerWidth}x300&format=jpg&zoom=12`;
@@ -83,26 +82,27 @@ class Main extends Component {
   };
 
   getMoviesData = async () => {
-    let serverURL = `${process.env.REACT_APP_SERVER_LOCAL}/movies?`;
-    let movieResults = await axios.get(serverURL);
-    console.log("🚀 ~ file: Main.js:88 ~ Main ~ getMoviesData= ~ movieResults", movieResults);
+    console.log('hit the movies function');
+    // let serverURL = `${process.env.REACT_APP_SERVER_LOCAL}/movies?`;
+    // let movieResults = await axios.get(serverURL);
+    // console.log("🚀 ~ file: Main.js:88 ~ Main ~ getMoviesData= ~ movieResults", movieResults);
 
   };
 
   render() {
-    console.log(this.state.weather);
+    // console.log(this.state.weather);
     return (
       <main>
-        <Row>
-          <Col>
+       
+          
             <SearchCityForm
               searchCityAPI={this.searchCityAPI}
               handleCityInput={this.handleCityInput}
               error={this.state.displayError}
               errorMessage={this.state.errorMessage}
             />
-          </Col>
-        </Row>
+          
+        
 
         {this.state.displayMap && (
           <>
