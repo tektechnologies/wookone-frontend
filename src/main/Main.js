@@ -82,6 +82,13 @@ class Main extends Component {
     }
   };
 
+  getMoviesData = async () => {
+    let serverURL = `${process.env.REACT_APP_SERVER_LOCAL}/movies?`;
+    let movieResults = await axios.get(serverURL);
+    console.log("🚀 ~ file: Main.js:88 ~ Main ~ getMoviesData= ~ movieResults", movieResults);
+
+  };
+
   render() {
     console.log(this.state.weather);
     return (
