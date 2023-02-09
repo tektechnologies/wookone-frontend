@@ -3,7 +3,8 @@ import "./mainCSS/main.css";
 import axios from "axios";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import SearchCityForm from "./SearchCityForm.js";
+import SearchCityForm from "./components/SearchCityForm.js";
+import Weather from './components/Weather.js'
 
 class Main extends Component {
   constructor(props) {
@@ -108,6 +109,9 @@ class Main extends Component {
               src={this.state.mapData}
               alt={this.state.cityData.display_name}
             />
+
+          <Weather weather={this.state.weather}/>
+
           </>
         )}
       </main>
