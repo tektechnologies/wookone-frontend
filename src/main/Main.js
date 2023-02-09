@@ -9,14 +9,15 @@ class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      citySearched: '',
-      cityData: '',
-      mapData: '',
-      lat: '',
-      lon: '',
+      citySearched: "",
+      cityData: "",
+      mapData: "",
+      lat: "",
+      lon: "",
+      weather: [],
       displayMap: false,
       displayError: false,
-      errorMessage: '',
+      errorMessage: "",
     };
   }
 
@@ -33,23 +34,24 @@ class Main extends Component {
 
       let cityData = await axios.get(searchCityURL);
 
-      this.setState({
+      this.setState(
+        {
           error: false,
           displayMap: true,
           cityData: cityData.data[0],
           lat: cityData.data[0].lat,
           lon: cityData.data[0].lon,
         },
-        () =>{
+        () => {
           this.getMapData();
         }
       );
-      this.getWeatherData(cityData.data[0].lat,cityData.data[0].lon);
+      this.getWeatherData(cityData.data[0].lat, cityData.data[0].lon);
     } catch (error) {
       this.setState({
         displayMap: false,
         displayError: true,
-        errorMessage: error.response.status + ': ' + error.response.data.error 
+        errorMessage: error.response.status + ": " + error.response.data.error,
       });
     }
   };
@@ -62,48 +64,52 @@ class Main extends Component {
   };
 
   getWeatherData = async (lat, lon) => {
-    // console.log('lets get weather!!!!!!');
-    let serverURL = `${process.env.REACT_APP_SERVER_LOCAL}/weather?lat=${lat}&lon=${lon}`;
+    try {
+      let serverURL = `${process.env.REACT_APP_SERVER_LOCAL}/weather?lat=${lat}&lon=${lon}`;
 
-    console.log("🚀 ~ file: Main.js:74 ~ Main ~ getWeatherData= ~ serverURL", serverURL);
-    let weatherResults = await axios.get(serverURL);
-    console.log("🚀 ~ file: Main.js:74 ~ Main ~ getWeatherData= ~ weatherResults", weatherResults);
-    
+      let weatherResults = await axios.get(serverURL);
+      this.setState({
+        weather: weatherResults.data
+      })
+    } catch (error) {
+      this.setState({
+      displayMap: false,
+      displayError: true,
+      errorMessage: error.response && error.response.status
+      });
+      
+    }
   };
 
-
   render() {
-    console.log(this.state.errorMessage);
+    console.log(this.state.weather);
     return (
       <main>
         <Row>
           <Col>
-            <SearchCityForm 
-            searchCityAPI={this.searchCityAPI}
-            handleCityInput={this.handleCityInput}
-            error={this.state.displayError}
-            errorMessage={this.state.errorMessage}
+            <SearchCityForm
+              searchCityAPI={this.searchCityAPI}
+              handleCityInput={this.handleCityInput}
+              error={this.state.displayError}
+              errorMessage={this.state.errorMessage}
             />
           </Col>
         </Row>
 
-        
-          {this.state.displayMap && 
-            <>
-              <ul>
-                <li>City Name: {this.state.cityData.display_name}</li>
-                <li>Latitude: {this.state.cityData.lat}</li>
-                <li>Longitude: {this.state.cityData.lon}</li>
-              </ul>
-             
-                <img
-                  src={this.state.mapData}
-                  alt={this.state.cityData.display_name}
-                />
-              
-            </>
-          }
-     
+        {this.state.displayMap && (
+          <>
+            <ul>
+              <li>City Name: {this.state.cityData.display_name}</li>
+              <li>Latitude: {this.state.cityData.lat}</li>
+              <li>Longitude: {this.state.cityData.lon}</li>
+            </ul>
+
+            <img
+              src={this.state.mapData}
+              alt={this.state.cityData.display_name}
+            />
+          </>
+        )}
       </main>
     );
   }
