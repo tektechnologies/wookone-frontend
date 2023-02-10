@@ -3,6 +3,7 @@ import "./mainCSS/main.css";
 import axios from "axios";
 import SearchCityForm from "./components/SearchCityForm.js";
 import Weather from './components/Weather.js'
+import Movies from "./Movies";
 
 class Main extends Component {
   constructor(props) {
