@@ -5,7 +5,7 @@ import "../mainCSS/main.css";
 
 class Weather extends React.Component {
   render() {
-    console.log("weather data: ", this.props.weather);
+    // console.log("weather data: ", this.props.weather);
     return (
       <>
         <h2>Weather:</h2>

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./mainCSS/main.css";
 import axios from "axios";
 import SearchCityForm from "./components/SearchCityForm.js";
-import Weather from './components/Weather.js'
+import Weather from "./components/Weather.js";
 import Movies from "./Movies";
 
 class Main extends Component {
@@ -55,9 +55,7 @@ class Main extends Component {
         displayError: true,
         errorMessage: error.response.status + ": " + error.response.data.error,
       });
-
     }
-  
   };
   getMapData = async () => {
     let mapURL = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_KEY}&center=${this.state.lat},${this.state.lon}&size=${window.innerWidth}x300&format=jpg&zoom=12`;
@@ -73,51 +71,43 @@ class Main extends Component {
 
       let weatherResults = await axios.get(serverURL);
       this.setState({
-        weather: weatherResults.data
-      })
+        weather: weatherResults.data,
+      });
     } catch (error) {
       this.setState({
-      displayMap: false,
-      displayError: true,
-      errorMessage: error.response && error.response.status
+        displayMap: false,
+        displayError: true,
+        errorMessage: error.response && error.response.status,
       });
-      
     }
   };
 
   getMoviesData = async () => {
     try {
       let serverURL = `${process.env.REACT_APP_SERVER_LOCAL}/movies?searchQuery=${this.state.citySearched}`;
-    let movieResults = await axios.get(serverURL);
-    this.setState({
-      movies: movieResults.data
-    })
+      let movieResults = await axios.get(serverURL);
+      this.setState({
+        movies: movieResults.data,
+      });
     } catch (error) {
       this.setState({
         displayMap: false,
         displayError: true,
-        errorMessage: error.response && error.response.status
-        });
+        errorMessage: error.response && error.response.status,
+      });
     }
-    
-    
-
   };
 
   render() {
     // console.log(this.state.weather);
     return (
       <main>
-       
-          
-            <SearchCityForm
-              searchCityAPI={this.searchCityAPI}
-              handleCityInput={this.handleCityInput}
-              error={this.state.displayError}
-              errorMessage={this.state.errorMessage}
-            />
-          
-        
+        <SearchCityForm
+          searchCityAPI={this.searchCityAPI}
+          handleCityInput={this.handleCityInput}
+          error={this.state.displayError}
+          errorMessage={this.state.errorMessage}
+        />
 
         {this.state.displayMap && (
           <>
@@ -132,9 +122,8 @@ class Main extends Component {
               alt={this.state.cityData.display_name}
             />
 
-          <Weather weather={this.state.weather}/>
-          <Movies />
-
+            <Weather weather={this.state.weather} />
+            <Movies movies={this.state.movies}/>
           </>
         )}
       </main>
