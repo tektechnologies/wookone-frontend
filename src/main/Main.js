@@ -85,12 +85,21 @@ class Main extends Component {
   };
 
   getMoviesData = async () => {
-    console.log('hit the movies function');
-    let serverURL = `${process.env.REACT_APP_SERVER_LOCAL}/movies?searchQuery=${this.state.citySearched}`;
-    
-    console.log("🚀 ~ file: Main.js:89 ~ Main ~ getMoviesData= ~ serverURL", serverURL);
+    try {
+      let serverURL = `${process.env.REACT_APP_SERVER_LOCAL}/movies?searchQuery=${this.state.citySearched}`;
     let movieResults = await axios.get(serverURL);
-    console.log("🚀 ~ file: Main.js:88 ~ Main ~ getMoviesData= ~ movieResults", movieResults);
+    this.setState({
+      movies: movieResults.data
+    })
+    } catch (error) {
+      this.setState({
+        displayMap: false,
+        displayError: true,
+        errorMessage: error.response && error.response.status
+        });
+    }
+    
+    
 
   };
 
