@@ -14,6 +14,7 @@ class Main extends Component {
       lat: "",
       lon: "",
       weather: [],
+      movies: [],
       displayMap: false,
       displayError: false,
       errorMessage: "",
