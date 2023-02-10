@@ -132,6 +132,7 @@ class Main extends Component {
             />
 
           <Weather weather={this.state.weather}/>
+          <Movies />
 
           </>
         )}
