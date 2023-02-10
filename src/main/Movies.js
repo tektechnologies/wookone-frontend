@@ -1,13 +1,12 @@
-import React from 'react'
+import React from "react";
 
- class Movies extends React.Component {
-
-
+class Movies extends React.Component {
   render() {
     console.log(this.props.movies);
-    return (
-      <div>Movies</div>
-    )
+    let movies = this.props.movies.map((movie, index) => {
+      return <img src={movie.imageUrl} alt={movie.title} />;
+    });
+    return <div>{movies}</div>;
   }
 }
 
