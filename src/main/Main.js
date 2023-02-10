@@ -29,7 +29,6 @@ class Main extends Component {
   };
 
   searchCityAPI = async () => {
-    console.log(this.state.citySearched);
     try {
       let searchCityURL = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATION_KEY}&q=${this.state.citySearched}&format=json`;
 
@@ -99,7 +98,6 @@ class Main extends Component {
   };
 
   render() {
-    // console.log(this.state.weather);
     return (
       <main>
         <SearchCityForm
