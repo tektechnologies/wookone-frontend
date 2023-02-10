@@ -47,14 +47,16 @@ class Main extends Component {
         }
       );
       this.getWeatherData(cityData.data[0].lat, cityData.data[0].lon);
+      this.getMoviesData();
     } catch (error) {
       this.setState({
         displayMap: false,
         displayError: true,
         errorMessage: error.response.status + ": " + error.response.data.error,
       });
+
     }
-    this.getMoviesData();
+  
   };
   getMapData = async () => {
     let mapURL = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_KEY}&center=${this.state.lat},${this.state.lon}&size=${window.innerWidth}x300&format=jpg&zoom=12`;
@@ -84,9 +86,11 @@ class Main extends Component {
 
   getMoviesData = async () => {
     console.log('hit the movies function');
-    // let serverURL = `${process.env.REACT_APP_SERVER_LOCAL}/movies?`;
-    // let movieResults = await axios.get(serverURL);
-    // console.log("🚀 ~ file: Main.js:88 ~ Main ~ getMoviesData= ~ movieResults", movieResults);
+    let serverURL = `${process.env.REACT_APP_SERVER_LOCAL}/movies?searchQuery=${this.state.citySearched}`;
+    
+    console.log("🚀 ~ file: Main.js:89 ~ Main ~ getMoviesData= ~ serverURL", serverURL);
+    let movieResults = await axios.get(serverURL);
+    console.log("🚀 ~ file: Main.js:88 ~ Main ~ getMoviesData= ~ movieResults", movieResults);
 
   };
 
