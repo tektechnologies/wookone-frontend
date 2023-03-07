@@ -9,16 +9,18 @@ class Header extends Component {
       <>
         <Navbar className="bg-navbar" fixed="top" expand="lg">
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-
           <Navbar.Collapse id="basic-navbar-nav">
+
             <Nav className="mr-auto">
               <NavLink className="navbarAnchor" to="/">
                 wooking
               </NavLink>
+              <NavLink className="navbarAnchor" to="/home">
+                home
+              </NavLink>
             </Nav>
 
-            <ul className="nav navbar-nav">
-            </ul>
+            <ul className="nav navbar-nav"></ul>
           </Navbar.Collapse>
         </Navbar>
 
