@@ -73,7 +73,7 @@ nav .navbar-nav  a {
   /* styles for mobile browsers smaller than 480px; (iPhone) */
   .navbar-collapse  {
     text-align: center;
-    background-color: rgb(122, 160, 149, .70);
+    background-color: rgba(11, 46, 36, 0.7);
     border-radius: 5px;
     font-size: 2.5em;
     -webkit-box-shadow:0px 0px 30px 24px rgba(215,249,241,0.27);
