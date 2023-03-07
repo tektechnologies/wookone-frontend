@@ -1,7 +1,6 @@
-import "./App.css";
+import React from "react";
 import Header from "./header/Header.js";
-import Home from './home/Home.js';
-
+import Main from "./main/Main.js";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -12,22 +11,22 @@ import {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Header />}>
-      <Route index element={<Home />} />
-      {/* <Route path="profile" element={<Profile />} />
-      <Route path="login" element={<Login />} />
-      <Route path="logout" element={<Logout />} /> */}
-      {/* <Route path="help" element={<HelpComponent />}>
-        <Route path="faq" element={<FAQ />} />
-      </Route> */}
+      <Route index element={<Main />} />
     </Route>
   )
 );
-function App() {
-  return (
-    <>
-      <RouterProvider router={router} />
-    </>
-  );
+
+
+class App extends React.Component {
+  render() {
+    return (
+      <>
+        <RouterProvider router={router} />
+      </>
+    );
+  }
 }
 
+
 export default App;
+
