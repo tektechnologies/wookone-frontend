@@ -6,10 +6,12 @@ main {
    background-color: #03256C;
    background-color: #2541B2;
    background-color: #06BEE1;
-   margin-top: 75px;
+   margin-top: 80px;
+   height: 200px;
    /* position: fixed; */
    /* right: 0;
    left: 0; */
+
   }
 
 
@@ -18,3 +20,4 @@ main {
 .float {
    float: left;
 }
+

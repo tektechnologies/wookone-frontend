@@ -15,7 +15,7 @@ class SearchCityForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.searchCityValue}>
+      <form onSubmit={this.searchCityValue} className="form-style">
         <label>
           Search For City:
           <input 
